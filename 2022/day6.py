@@ -7,15 +7,17 @@ SEP = os.path.sep
 
 _file = f"{BASE_DIR}{SEP}sample_inputs{SEP}Day6.txt"
 
-input_value = open(_file, encoding='utf-8').read()
+with open(_file, encoding='utf-8') as _f:
+    input_value = _f.read()
 
-def find_first_signal(marker_count):    
+def find_first_signal(marker_count):
     "Return the Start of the marker"
     queue = deque(maxlen=marker_count)
     for num, value in enumerate(input_value):
         queue.append(value)
         if len(queue) == marker_count and len(set(queue)) == marker_count:
             return num + 1
+    return None
 
 
 print("Answer to Part 1 is: ", find_first_signal(4))
