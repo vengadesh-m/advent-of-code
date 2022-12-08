@@ -1,7 +1,8 @@
 "Day 9 solution"
 import os
+from math import sqrt
 import numpy as np
-from math import sqrt, prod
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SEP = os.path.sep
@@ -9,6 +10,7 @@ SEP = os.path.sep
 _file = f"{BASE_DIR}{SEP}sample_inputs{SEP}Day8.txt"
 
 def part1(_f):
+    "Solution for Part1"
     input_list = list(row  for line in _f.read().splitlines() for row in line)
     matrix_length = int(sqrt(len(input_list)))
     array = np.array(input_list).reshape((matrix_length,matrix_length))
@@ -21,12 +23,18 @@ def part1(_f):
             left = [int(array[row][col_count]) for col_count in range(col)]
             right = [int(array[row][col_count]) for col_count in range(col+1, matrix_length)]
             element = int(array[row][col])
-            if element > max(top) or element > max(bottom) or element > max(right) or element > max(left):
+            if (
+                element > max(top) or 
+                element > max(bottom) or 
+                element > max(right) or 
+                element > max(left)
+            ):
                 ans += 1
     print(f"{ans} no. of trees is visible")
 
 
 def element_counter(l, element, reverse=False):
+    "Count the number of trees visible"
     if reverse:
         l = reversed(l)
     counter = 0
@@ -43,6 +51,7 @@ def element_counter(l, element, reverse=False):
 
 
 def part2(_f):
+    "Solution for Part2"
     input_list = list(row  for line in _f.read().splitlines() for row in line)
     matrix_length = int(sqrt(len(input_list)))
     array = np.array(input_list).reshape((matrix_length,matrix_length))
@@ -59,7 +68,7 @@ def part2(_f):
                 element_counter(bottom, element) * 
                 element_counter(left, element, reverse=True) * 
                 element_counter(right, element)
-                )            
+                )
     print(f"{max(ans)} is the highest score")
 
 
