@@ -43,7 +43,6 @@ def part2(_f):
         except ValueError:
             pass
         cycle_sprite_map[cycle] = sprite
-    # print(cycle_sprite_map)
     for crt in crt_position:
         if crt % 40 in cycle_sprite_map[crt+1]:
             print('#', end='')
@@ -52,9 +51,9 @@ def part2(_f):
         if crt and (crt+1) % 40 == 0:
             print()
 
-with open(_file) as _f:
+with open(_file, encoding='utf-8') as _f:
     part1(_f)
 
-with open(_file) as _f:
+with open(_file, encoding='utf-8') as _f:
     part2(_f)
     
