@@ -1,6 +1,5 @@
 "Day 1 solution of AoC"
 import os
-from math import inf
 
 result = {}
 
