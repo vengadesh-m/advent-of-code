@@ -13,4 +13,5 @@ def part1():
         j = lookandsay(j)
     print(len(j))
 
+
 part1()
